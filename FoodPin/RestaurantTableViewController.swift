@@ -40,6 +40,9 @@ class RestaurantTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        //更改返回按钮
+        navigationItem.backBarButtonItem=UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -186,7 +189,7 @@ class RestaurantTableViewController: UITableViewController {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         if segue.identifier=="showRestaurantDetail"{
-                let destVC=segue.destinationViewController as! RestaurantDetailViewController
+                let destVC=segue.destinationViewController as! DetailTableViewController
             
             destVC.restaurant=resraurants[(tableView.indexPathForSelectedRow!.row)]
         }

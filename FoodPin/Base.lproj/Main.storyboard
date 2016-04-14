@@ -4,6 +4,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--吃货点评-->
@@ -62,7 +63,7 @@
                                     <outlet property="restaurantImage" destination="MN6-wS-w1L" id="yQI-uL-rxz"/>
                                     <outlet property="restaurantName" destination="IaK-Ps-cgu" id="DSH-5S-mkY"/>
                                     <outlet property="restaurantType" destination="Pr7-br-gz6" id="kOB-Pg-amF"/>
-                                    <segue destination="lTU-Q7-LwB" kind="show" identifier="showRestaurantDetail" id="ZfH-Hb-fi2"/>
+                                    <segue destination="1h4-Mc-R1k" kind="show" identifier="showRestaurantDetail" id="RCj-1d-xK7"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -80,7 +81,7 @@
         <!--Navigation Controller-->
         <scene sceneID="5w8-wb-Fkm">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="6D8-zM-gRH" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" hidesBarsOnSwipe="YES" id="6D8-zM-gRH" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="d00-W1-0gs">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -125,7 +126,76 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="txR-VR-d5Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1969" y="-972"/>
+            <point key="canvasLocation" x="1974" y="-1314"/>
+        </scene>
+        <!--Detail Table View Controller-->
+        <scene sceneID="aAx-OL-Cb7">
+            <objects>
+                <tableViewController id="1h4-Mc-R1k" customClass="DetailTableViewController" customModule="FoodPin" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="THE-Vf-JM9">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <imageView key="tableHeaderView" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="barrafina" id="72P-kO-4w6">
+                            <rect key="frame" x="0.0" y="64" width="600" height="300"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DetailCell" rowHeight="36" id="oeO-kF-e4a" customClass="DetailTableViewCell" customModule="FoodPin" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="392" width="600" height="36"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oeO-kF-e4a" id="LmJ-9O-phA">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="35.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LVG-lE-hBc">
+                                            <rect key="frame" x="8" y="8" width="584" height="21"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="261" verticalHuggingPriority="251" misplaced="YES" text="字段" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kyX-U0-l3p">
+                                                    <rect key="frame" x="0.0" y="0.0" width="195" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="值" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vni-TF-FwS">
+                                                    <rect key="frame" x="195" y="0.0" width="390" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="kyX-U0-l3p" firstAttribute="width" secondItem="Vni-TF-FwS" secondAttribute="width" multiplier="0.5" id="P4d-5T-P1z"/>
+                                            </constraints>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailingMargin" secondItem="LVG-lE-hBc" secondAttribute="trailing" id="2nZ-bC-kd3"/>
+                                        <constraint firstItem="LVG-lE-hBc" firstAttribute="centerY" secondItem="LmJ-9O-phA" secondAttribute="centerY" id="7Rh-9O-ExE"/>
+                                        <constraint firstAttribute="leadingMargin" secondItem="LVG-lE-hBc" secondAttribute="leading" id="Efc-4R-JRq"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="fieldLabel" destination="kyX-U0-l3p" id="7OY-93-xuX"/>
+                                    <outlet property="valueLabel" destination="Vni-TF-FwS" id="6nY-Sa-RLu"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="1h4-Mc-R1k" id="XQ2-Yk-QAy"/>
+                            <outlet property="delegate" destination="1h4-Mc-R1k" id="FHf-e6-49f"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <outlet property="DetailImage" destination="72P-kO-4w6" id="tKk-KE-g5v"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wKU-LF-Ix8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1984" y="-676"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="barrafina" width="640" height="640"/>
+    </resources>
 </document>
