@@ -9,6 +9,8 @@
 import UIKit
 
 class DetailTableViewController: UITableViewController {
+    @IBOutlet weak var retaingBtn: UIButton!
+    
     var restaurant:Restaurant!
     @IBOutlet weak var DetailImage: UIImageView!
     
@@ -27,6 +29,8 @@ class DetailTableViewController: UITableViewController {
         tableView.tableFooterView=UIView(frame: CGRectZero)
         //更改分割线颜色
         tableView.separatorColor=UIColor(white: 0.9,alpha: 1)
+        
+        navigationItem.backBarButtonItem=UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
         
         title=restaurant.name
         tableView.estimatedRowHeight=36;
@@ -116,14 +120,26 @@ class DetailTableViewController: UITableViewController {
     }
     */
 
-    /*
+ 
     // MARK: - Navigation
-
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "showMap" {
+            let destVC=segue.destinationViewController as! MapViewController
+            destVC.restaurant = self.restaurant
+        }
     }
-    */
+ 
+    @IBAction func close(segue:UIStoryboardSegue){
+        if let reviewVC=segue.sourceViewController as? RevieweViewController {
+            if let rating = reviewVC.rating{
+                self.restaurant.rating = rating
+                self.retaingBtn.setImage(UIImage(named: rating), forState: .Normal)
+            }
+        }
+    }
 
 }

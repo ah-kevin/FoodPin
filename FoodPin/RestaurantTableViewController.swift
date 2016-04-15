@@ -31,7 +31,6 @@ class RestaurantTableViewController: UITableViewController {
         Restaurant(name: "多尼西亚", type: "西班牙式", location: "Waterloo Station、London SE1 7LY", image: "donostia.jpg", isVisited: false) ,
         Restaurant(name: "皇家橡树", type: "英式", location: "Unit 4a、44-58 Brompton Rd、London SW3 1BW", image: "royaloak.jpg", isVisited: false) ,
         Restaurant(name: "泰咖啡", type: "泰式", location: "7-9 Golders Green Rd、London NW11 8DY", image: "thaicafe.jpg", isVisited: false)
-
     ]
     
     override func viewDidLoad() {
@@ -44,6 +43,9 @@ class RestaurantTableViewController: UITableViewController {
         
         //更改返回按钮
         navigationItem.backBarButtonItem=UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+        
+        tableView.estimatedRowHeight=80;
+        tableView.rowHeight=UITableViewAutomaticDimension;
     }
 
     override func didReceiveMemoryWarning() {

@@ -14,4 +14,14 @@ struct Restaurant {
     var location:String
     var image:String
     var isVisited:Bool
+    var rating = ""
+    
+    init(name:String,type:String,location:String,image:String,isVisited:Bool){
+        self.name=name
+        self.location=location
+        self.type=type
+        self.image=image
+        self.isVisited=isVisited
+    }
+    
 }
