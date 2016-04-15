@@ -29,7 +29,8 @@ class DetailTableViewController: UITableViewController {
         tableView.separatorColor=UIColor(white: 0.9,alpha: 1)
         
         title=restaurant.name
-    
+        tableView.estimatedRowHeight=36;
+        tableView.rowHeight=UITableViewAutomaticDimension;
     }
     
 //    override func viewDidAppear(animated: Bool) {

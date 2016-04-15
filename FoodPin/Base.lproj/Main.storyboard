@@ -81,7 +81,7 @@
         <!--Navigation Controller-->
         <scene sceneID="5w8-wb-Fkm">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" hidesBarsOnSwipe="YES" id="6D8-zM-gRH" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="6D8-zM-gRH" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="d00-W1-0gs">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -148,17 +148,17 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="35.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LVG-lE-hBc">
-                                            <rect key="frame" x="8" y="8" width="584" height="21"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LVG-lE-hBc">
+                                            <rect key="frame" x="8" y="8" width="584" height="19.5"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="261" verticalHuggingPriority="251" misplaced="YES" text="字段" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kyX-U0-l3p">
-                                                    <rect key="frame" x="0.0" y="0.0" width="195" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="261" verticalHuggingPriority="251" text="字段" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kyX-U0-l3p">
+                                                    <rect key="frame" x="0.0" y="0.0" width="194.5" height="19.5"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="值" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vni-TF-FwS">
-                                                    <rect key="frame" x="195" y="0.0" width="390" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="值" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vni-TF-FwS">
+                                                    <rect key="frame" x="194.5" y="0.0" width="389.5" height="19.5"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -173,6 +173,8 @@
                                         <constraint firstAttribute="trailingMargin" secondItem="LVG-lE-hBc" secondAttribute="trailing" id="2nZ-bC-kd3"/>
                                         <constraint firstItem="LVG-lE-hBc" firstAttribute="centerY" secondItem="LmJ-9O-phA" secondAttribute="centerY" id="7Rh-9O-ExE"/>
                                         <constraint firstAttribute="leadingMargin" secondItem="LVG-lE-hBc" secondAttribute="leading" id="Efc-4R-JRq"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="LVG-lE-hBc" secondAttribute="bottom" id="Qro-1j-c28"/>
+                                        <constraint firstAttribute="topMargin" secondItem="LVG-lE-hBc" secondAttribute="top" id="h3e-yL-Cqv"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
