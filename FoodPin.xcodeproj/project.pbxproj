@@ -21,6 +21,7 @@
 		5E7BD7E91CC0B50200A87E38 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7BD7E81CC0B50200A87E38 /* MapViewController.swift */; };
 		5E7EF2E31CBF86D500426DCF /* DetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7EF2E21CBF86D500426DCF /* DetailTableViewController.swift */; };
 		5E7EF2E51CBF8B2A00426DCF /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7EF2E41CBF8B2A00426DCF /* DetailTableViewCell.swift */; };
+		5EAD90E01CC2390B00696F95 /* AddRestaurantTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EAD90DF1CC2390B00696F95 /* AddRestaurantTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		5E7BD7E81CC0B50200A87E38 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		5E7EF2E21CBF86D500426DCF /* DetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailTableViewController.swift; sourceTree = "<group>"; };
 		5E7EF2E41CBF8B2A00426DCF /* DetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
+		5EAD90DF1CC2390B00696F95 /* AddRestaurantTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRestaurantTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +127,7 @@
 				5E4FEB581CBF7CDE00AA33E6 /* Restaurant.swift */,
 				5E7BD7E41CC09E7A00A87E38 /* RevieweViewController.swift */,
 				5E7BD7E81CC0B50200A87E38 /* MapViewController.swift */,
+				5EAD90DF1CC2390B00696F95 /* AddRestaurantTableViewController.swift */,
 			);
 			path = FoodPin;
 			sourceTree = "<group>";
@@ -283,6 +286,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5EAD90E01CC2390B00696F95 /* AddRestaurantTableViewController.swift in Sources */,
 				5E7EF2E31CBF86D500426DCF /* DetailTableViewController.swift in Sources */,
 				5E4FEB591CBF7CDE00AA33E6 /* Restaurant.swift in Sources */,
 				5E7EF2E51CBF8B2A00426DCF /* DetailTableViewCell.swift in Sources */,

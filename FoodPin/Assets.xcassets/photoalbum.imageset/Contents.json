@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "cafeloisl.jpg",
+      "filename" : "photoalbum.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "cafeloisl@2x.jpg",
+      "filename" : "photoalbum@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "cafeloisl@3x.jpg",
+      "filename" : "photoalbum@3x.png",
       "scale" : "3x"
     }
   ],
