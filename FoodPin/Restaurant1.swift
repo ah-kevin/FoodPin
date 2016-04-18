@@ -8,14 +8,14 @@
 
 import Foundation
 
-struct Restaurant {
+struct Restaurant1 {
     var name:String
     var type:String
     var location:String
     var image:String
     var isVisited:Bool
     var rating = ""
-    
+  
     init(name:String,type:String,location:String,image:String,isVisited:Bool){
         self.name=name
         self.location=location

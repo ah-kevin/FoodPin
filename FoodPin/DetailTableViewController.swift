@@ -16,7 +16,7 @@ class DetailTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        DetailImage.image=UIImage(named: restaurant.image)
+        DetailImage.image=UIImage(data: restaurant.image!)
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
@@ -74,7 +74,7 @@ class DetailTableViewController: UITableViewController {
             cell.valueLabel.text=restaurant.location
         case 3:
             cell.fieldLabel.text="是否来过"
-            cell.valueLabel.text=restaurant.isVisited ? "来过": "未来过"
+            cell.valueLabel.text=restaurant.isVisited.boolValue ? "来过": "未来过"
         default:
             cell.fieldLabel.text=""
             cell.valueLabel.text=""
@@ -138,6 +138,13 @@ class DetailTableViewController: UITableViewController {
             if let rating = reviewVC.rating{
                 self.restaurant.rating = rating
                 self.retaingBtn.setImage(UIImage(named: rating), forState: .Normal)
+                
+                let buffer = (UIApplication.sharedApplication().delegate as? AppDelegate)?.managedObjectContext
+                do{
+                    try buffer?.save()
+                }catch{
+                    print(error)
+                }
             }
         }
     }

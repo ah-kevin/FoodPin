@@ -7,32 +7,10 @@
 //
 
 import UIKit
-
-class RestaurantTableViewController: UITableViewController {
-    var resraurants=[
-        Restaurant(name: "咖啡胡同", type: "咖啡 & 茶店", location: "香港上环德辅道西78号G/F", image: "cafedeadend.jpg", isVisited: false) ,
-        Restaurant(name: "霍米", type: "咖啡", location: "香港上环文咸东街太平山22-24A，B店", image: "homei.jpg", isVisited: false) ,
-        Restaurant(name: "茶.家", type: "茶屋", location: "香港葵涌和宜合道熟食市场地下", image: "teakha.jpg", isVisited: false) ,
-        Restaurant(name: "洛伊斯咖啡", type: "奥地利式 & 休闲饮料", location: "香港新界葵涌屏富径", image: "cafeloisl.jpg", isVisited: false) ,
-        Restaurant(name: "贝蒂生蚝", type: "法式", location: "香港九龙尖沙咀河内道18号(近港铁尖东站N3,N4出口) ", image: "petiteoyster.jpg", isVisited: false) ,
-        Restaurant(name: "福奇餐馆", type: "面包房", location: "香港岛中环都爹利街13号乐成行地库中层", image: "forkeerestaurant.jpg", isVisited: false) ,
-        Restaurant(name: "阿波画室", type: "面包房", location: "香港岛铜锣湾轩尼诗道555号崇光百货地库2楼30号铺", image: "posatelier.jpg", isVisited: false) ,
-        Restaurant(name: "伯克街面包坊", type: "巧克力", location: "4 Hickson Rd、The Rocks NSW 2000", image: "bourkestreetbakery.jpg", isVisited: false) ,
-        Restaurant(name: "黑氏巧克力", type: "咖啡", location: "31 Wheat Rd、Sydney NSW 2001", image: "haighschocolate.jpg", isVisited: false) ,
-        Restaurant(name: "惠灵顿雪梨", type: "美式 & 海鲜", location: "1/11-31 York Street Sydney NSW Australia、Sydney NSW 2000", image: "palominoespresso.jpg", isVisited: false) ,
-        Restaurant(name: "北州", type: "美式", location: "Macy's、151 W 34th St Fifth Floor、New York, NY 10001", image: "upstate.jpg", isVisited: false) ,
-        Restaurant(name: "布鲁克林塔菲", type: "美式", location: "250 8th Ave、New York, NY 10107", image: "traif.jpg", isVisited: false) ,
-        Restaurant(name: "格雷厄姆大街肉", type: "早餐 & 早午餐", location: "55-1 Riverwalk Pl、West New York, NJ 07093", image: "grahamavenuemeats.jpg", isVisited: false) ,
-        Restaurant(name: "华夫饼 & 沃夫", type: "法式 & 茶", location: "1585 Broadway、New York, NY 10036-8200", image: "wafflewolf.jpg", isVisited: false) ,
-        Restaurant(name: "五叶", type: "咖啡 & 茶", location: "1460 Broadway、New York, NY 10036", image: "fiveleaves.jpg", isVisited: false) ,
-        Restaurant(name: "眼光咖啡", type: "拉丁美式", location: "250 8th Ave、New York, NY 10107", image: "cafelore.jpg", isVisited: false) ,
-        Restaurant(name: "忏悔", type: "西班牙式", location: "822 Lexington Ave、New York, NY 10065", image: "confessional.jpg", isVisited: false) ,
-        Restaurant(name: "巴拉菲娜", type: "西班牙式", location: "Unit 2, Eldon Chambers、30-32 Fleet St、London EC4Y 1AA", image: "barrafina.jpg", isVisited: false) ,
-        Restaurant(name: "多尼西亚", type: "西班牙式", location: "Waterloo Station、London SE1 7LY", image: "donostia.jpg", isVisited: false) ,
-        Restaurant(name: "皇家橡树", type: "英式", location: "Unit 4a、44-58 Brompton Rd、London SW3 1BW", image: "royaloak.jpg", isVisited: false) ,
-        Restaurant(name: "泰咖啡", type: "泰式", location: "7-9 Golders Green Rd、London NW11 8DY", image: "thaicafe.jpg", isVisited: false)
-    ]
-    
+import CoreData
+class RestaurantTableViewController: UITableViewController,NSFetchedResultsControllerDelegate {
+    var resraurants:[Restaurant]=[]
+    var frc :NSFetchedResultsController!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Uncomment the following line to preserve selection between presentations
@@ -46,8 +24,50 @@ class RestaurantTableViewController: UITableViewController {
         
         tableView.estimatedRowHeight=80;
         tableView.rowHeight=UITableViewAutomaticDimension;
+        
+        let request = NSFetchRequest(entityName: "Restaurant")
+        request.sortDescriptors = [NSSortDescriptor(key:"name", ascending: true)]
+        
+        let  buffer = (UIApplication.sharedApplication().delegate as? AppDelegate)?.managedObjectContext
+        frc = NSFetchedResultsController(fetchRequest: request, managedObjectContext: buffer!, sectionNameKeyPath: nil, cacheName: nil)
+        frc.delegate = self
+        
+        do{
+            try frc.performFetch()
+            resraurants = frc.fetchedObjects as! [Restaurant]
+        }catch{
+            print(error)
+        }
     }
 
+    func controllerWillChangeContent(controller: NSFetchedResultsController) {
+        tableView.beginUpdates()
+    }
+    
+    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+        tableView.endUpdates()
+    }
+    
+    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+        switch type {
+        case .Insert:
+            if let _newindexPath = newIndexPath{
+                tableView.insertRowsAtIndexPaths([_newindexPath], withRowAnimation: .Automatic)
+            }
+        case .Delete:
+            if let _indexPath = indexPath {
+                tableView.deleteRowsAtIndexPaths([_indexPath], withRowAnimation: .Automatic)
+            }
+        case .Update:
+            if let _indexPath = indexPath{
+                tableView.reloadRowsAtIndexPaths([_indexPath], withRowAnimation: .Automatic)
+            }
+        default:
+            tableView.reloadData()
+        }
+        
+    resraurants = controller.fetchedObjects as! [Restaurant]
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -102,14 +122,14 @@ class RestaurantTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! CustomTableViewCell
             //         cell.textLabel?.text=eatshop[indexPath.row]
             //         cell.imageView?.image=UIImage(named: shopimg[indexPath.row])
-        cell.restaurantImage.image=UIImage(named: resraurants[indexPath.row].image)
+        cell.restaurantImage.image=UIImage(data: resraurants[indexPath.row].image!)
         cell.restaurantName.text=resraurants[indexPath.row].name
         cell.restaurantImage.layer.cornerRadius=cell.restaurantImage.frame.size.width/2;
         cell.restaurantImage.clipsToBounds=true;
         
         cell.heart.image=UIImage(named: "heart.png");
         cell.heart.hidden=true;
-        if resraurants[indexPath.row].isVisited{
+        if resraurants[indexPath.row].isVisited.boolValue{
             cell.heart.hidden = false
         }else{
             cell.heart.hidden = true
@@ -162,9 +182,20 @@ class RestaurantTableViewController: UITableViewController {
             self.presentViewController(alert,animated: true,completion:nil)
         }
         shareAction.backgroundColor=UIColor(red: 218/255, green: 225/255, blue: 218/255, alpha: 1)
-        let delete=UITableViewRowAction(style: .Default, title: "删除") { (action, indexPath) in
-            self.resraurants.removeAtIndex(indexPath.row);
-             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+        let delete=UITableViewRowAction(style: .Default, title: "删除") { (action, indexPath) -> Void in
+            //self.resraurants.removeAtIndex(indexPath.row);
+            // tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            
+            let buffer = (UIApplication.sharedApplication().delegate as? AppDelegate)?.managedObjectContext
+            let restaurantTodel = self.frc.objectAtIndexPath(indexPath) as! Restaurant
+            buffer?.deleteObject(restaurantTodel)
+            
+            do{
+                try buffer?.save()
+            }catch{
+            print(ErrorType)
+            }
+
         }
         return [shareAction,delete];
     }

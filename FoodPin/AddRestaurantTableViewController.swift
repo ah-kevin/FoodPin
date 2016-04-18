@@ -7,10 +7,48 @@
 //
 
 import UIKit
-
+import CoreData
 class AddRestaurantTableViewController: UITableViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
 
+    var restaurant : Restaurant!
+    var isVisited = false
+  
     @IBOutlet weak var imageview: UIImageView!
+    @IBOutlet weak var location: UITextField!
+    @IBAction func isVisitedTapped(sender: UIButton) {
+        if sender.tag == 8001{
+            isVisited = true
+            LAbelVisted.text = "我来过了"
+        }else{
+            isVisited = false
+            LAbelVisted.text = "我没来过"
+        }
+    }
+    @IBOutlet weak var LAbelVisted: UILabel!
+    @IBOutlet weak var name: UITextField!
+    @IBOutlet weak var type: UITextField!
+    
+    @IBAction func SavaBtnTapped(sender: UIBarButtonItem) {
+        let buffer = (UIApplication.sharedApplication().delegate as? AppDelegate)?.managedObjectContext
+        
+        let restaurant=NSEntityDescription.insertNewObjectForEntityForName("Restaurant", inManagedObjectContext: buffer!) as! Restaurant
+        restaurant.name = name.text!
+        restaurant.type = type.text!
+        restaurant.location = location.text!
+        
+        if let image = imageview.image{
+            restaurant.image = UIImagePNGRepresentation(image)
+        }
+        restaurant.isVisited = isVisited
+        
+        do {
+            try buffer?.save()
+        }catch{
+            print(error)
+        }
+        performSegueWithIdentifier("unwindTohomeList", sender: sender)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
