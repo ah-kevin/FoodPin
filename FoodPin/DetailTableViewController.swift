@@ -35,6 +35,7 @@ class DetailTableViewController: UITableViewController {
         title=restaurant.name
         tableView.estimatedRowHeight=36;
         tableView.rowHeight=UITableViewAutomaticDimension;
+        self.retaingBtn.setImage(UIImage(named: restaurant.rating!), forState: .Normal)
     }
     
 //    override func viewDidAppear(animated: Bool) {
